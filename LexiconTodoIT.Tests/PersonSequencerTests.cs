@@ -11,10 +11,15 @@ namespace LexiconTodoIT.Tests
         {
             PersonSequencer.reset(); 
             int idAfterIncrementMethodCall = 1;
-            int idAfterSecondIncrementMethodCall = 2;
+            Assert.Equal(idAfterIncrementMethodCall, PersonSequencer.nextPersonId());
 
-            Assert.Equal(idAfterIncrementMethodCall, PersonSequencer.nextPersonId() );
+            PersonSequencer.reset();
+            PersonSequencer.nextPersonId();
+            PersonSequencer.nextPersonId();
+            int idAfterSecondIncrementMethodCall = 3;
             Assert.Equal(idAfterSecondIncrementMethodCall, PersonSequencer.nextPersonId());
+
+            PersonSequencer.reset();
 
         }
 
