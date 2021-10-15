@@ -35,7 +35,6 @@ namespace LexiconTodoIT.Tests
             PersonSequencer.reset();
 
             Assert.Equal(idAfterResetMethodCall, PersonSequencer.PersonId);
-
         }
     }
 }

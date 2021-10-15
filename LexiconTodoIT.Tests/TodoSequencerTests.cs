@@ -16,6 +16,8 @@ namespace LexiconTodoIT.Tests
             Assert.Equal(idAfterIncrementMethodCall, TodoSequencer.nextTodoId());
             Assert.Equal(idAfterSecondIncrementMethodCall, TodoSequencer.nextTodoId());
 
+            TodoSequencer.reset();
+
         }
 
         [Fact]

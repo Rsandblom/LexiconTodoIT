@@ -28,24 +28,30 @@ namespace LexiconTodoIT.Tests
             Assert.Null(personThatShouldBeNull);
         }
 
-        [Fact]
-        public void IfPersonArrayContainsPersonWithIdReturnedPersonShouldNotBeNull()
-        {
-            Person personThatShouldNotBeNull = People.FindById(1);
-            Assert.NotNull(personThatShouldNotBeNull);
-        }
 
         [Fact]
         public void CreatedPersonShouldBeAddedToArrayAndReturned()
         {
-            int personIdOne = 1;
-            string firstNameOne = "FirstNameOne";
-            string lastNameOne = "LastNameOne";
+            People.Clear();
+
+            int personId = 1;
+            string firstNameOne = "FirstNameTwo";
+            string lastNameOne = "LastNameTwo";
             Person personOne = People.CreateAndAddNewPersonToArrayThenReturnPerson(firstNameOne, lastNameOne);
 
-            Assert.Equal(personIdOne, personOne.PersonId);
+            Assert.Equal(personId, personOne.PersonId);
             Assert.Equal(firstNameOne, personOne.FirstName);
             Assert.Equal(lastNameOne, personOne.LastName);
+        }
+
+
+        [Fact]
+        public void IfPersonArrayContainsPersonWithIdReturnedPersonShouldNotBeNull()
+        {
+           
+            Person personThatShouldNotBeNull = People.FindById(1);
+
+            Assert.NotNull(personThatShouldNotBeNull);
         }
 
         [Fact]
