@@ -38,6 +38,7 @@ namespace LexiconTodoIT.Data
         public static void Clear()
         {
             Array.Clear(personArray, 0, personArray.Length);
+            Array.Resize(ref personArray, 0);
         }
     }
 }

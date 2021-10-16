@@ -38,6 +38,75 @@ namespace LexiconTodoIT.Data
         public static void Clear()
         {
             Array.Clear(todoArray, 0, todoArray.Length);
+            Array.Resize(ref todoArray, 0);
+        }
+
+        public static Todo[] FindByDoneStatus(bool doneStatus)
+        {
+
+            int numberOfTodosWithCorrectDoneStatus = todoArray.Count(t => t.Done == doneStatus);
+            Todo[] tempDoneStatusArray = new Todo[numberOfTodosWithCorrectDoneStatus];
+            int index = 0;
+
+            foreach  (Todo todo in todoArray)
+            {
+                if (todo.Done == doneStatus)
+                    tempDoneStatusArray[index++] = todo;
+            }
+            
+            return tempDoneStatusArray;
+
+        }
+
+        public static Todo[] FindByAssignees(int personId)
+        {
+
+            int numberOfAssigneesWithPersonId = todoArray.Count(t => t.Assignee.PersonId == personId);
+            Todo[] tempAssigneePersonIdArray = new Todo[numberOfAssigneesWithPersonId];
+            int index = 0;
+
+            foreach (Todo todo in todoArray)
+            {
+                if (todo.Assignee.PersonId == personId)
+                    tempAssigneePersonIdArray[index++] = todo;
+            }
+
+            return tempAssigneePersonIdArray;
+
+        }
+
+        public static Todo[] FindByAssignees(Person assignee)
+        {
+
+            int numberOfAssignees = todoArray.Count(t => t.Assignee == assignee);
+            Todo[] tempAssigneeArray = new Todo[numberOfAssignees];
+            int index = 0;
+
+            foreach (Todo todo in todoArray)
+            {
+                if (todo.Assignee == assignee)
+                    tempAssigneeArray[index++] = todo;
+            }
+
+            return tempAssigneeArray;
+
+        }
+
+        public static Todo[] FindByUnassignedTodoItems()
+        {
+
+            int numberOfUnAssignedItems = todoArray.Count(t => t.Assignee == null);
+            Todo[] tempUnAssignedArray = new Todo[numberOfUnAssignedItems];
+            int index = 0;
+
+            foreach (Todo todo in todoArray)
+            {
+                if (todo.Assignee == null)
+                    tempUnAssignedArray[index++] = todo;
+            }
+
+            return tempUnAssignedArray;
+
         }
     }
 }

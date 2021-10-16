@@ -15,6 +15,15 @@ namespace LexiconTodoIT.Model
 
         public string Description { get { return description; } set { description = value; } }
 
+        public bool Done { get { return done; } set { done = value; } }
+
+        public Person Assignee
+        {
+            get { return assignee; }
+            set { assignee = value; }
+        }
+
+
         public Todo(int todoId, string description)
         {
             this.todoId = todoId;

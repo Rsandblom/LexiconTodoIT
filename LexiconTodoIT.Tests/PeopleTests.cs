@@ -11,7 +11,10 @@ namespace LexiconTodoIT.Tests
         [Fact]
         public void CallingSizeShouldReturnLengthOfArray()
         {
-            int lenghtOfArray = 1;
+            People.Clear();
+            PersonSequencer.reset();
+
+            int lenghtOfArray = 0;
             Assert.Equal(lenghtOfArray, People.Size());
         }
 
@@ -33,6 +36,7 @@ namespace LexiconTodoIT.Tests
         public void CreatedPersonShouldBeAddedToArrayAndReturned()
         {
             People.Clear();
+            PersonSequencer.reset();
 
             int personId = 1;
             string firstNameOne = "FirstNameTwo";
@@ -48,7 +52,12 @@ namespace LexiconTodoIT.Tests
         [Fact]
         public void IfPersonArrayContainsPersonWithIdReturnedPersonShouldNotBeNull()
         {
-           
+            People.Clear();
+            PersonSequencer.reset();
+
+            string firstNameOne = "FirstNameTwo";
+            string lastNameOne = "LastNameTwo";
+            Person personOne = People.CreateAndAddNewPersonToArrayThenReturnPerson(firstNameOne, lastNameOne);
             Person personThatShouldNotBeNull = People.FindById(1);
 
             Assert.NotNull(personThatShouldNotBeNull);
@@ -58,7 +67,7 @@ namespace LexiconTodoIT.Tests
         public void CallingClearMethodShouldResultInAnEmptyArray()
         {
             People.Clear();
-            Assert.Null(People.FindAll()[0]);
+            Assert.Empty(People.FindAll());
         }
     }
 }
