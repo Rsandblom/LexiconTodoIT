@@ -40,5 +40,10 @@ namespace LexiconTodoIT.Data
             Array.Clear(personArray, 0, personArray.Length);
             Array.Resize(ref personArray, 0);
         }
+
+        public static void RemovePerson(int personId)
+        {
+            personArray = personArray.Where(p => p.PersonId != personId).ToArray();
+        }
     }
 }

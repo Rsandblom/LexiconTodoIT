@@ -108,5 +108,10 @@ namespace LexiconTodoIT.Data
             return tempUnAssignedArray;
 
         }
+
+        public static void RemoveTodoItem(int todoId)
+        {
+            todoArray = todoArray.Where(t => t.TodoId != todoId).ToArray();
+        }
     }
 }

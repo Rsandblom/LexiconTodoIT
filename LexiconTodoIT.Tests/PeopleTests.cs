@@ -39,8 +39,8 @@ namespace LexiconTodoIT.Tests
             PersonSequencer.reset();
 
             int personId = 1;
-            string firstNameOne = "FirstNameTwo";
-            string lastNameOne = "LastNameTwo";
+            string firstNameOne = "FirstNameOne";
+            string lastNameOne = "LastNameOne";
             Person personOne = People.CreateAndAddNewPersonToArrayThenReturnPerson(firstNameOne, lastNameOne);
 
             Assert.Equal(personId, personOne.PersonId);
@@ -55,8 +55,8 @@ namespace LexiconTodoIT.Tests
             People.Clear();
             PersonSequencer.reset();
 
-            string firstNameOne = "FirstNameTwo";
-            string lastNameOne = "LastNameTwo";
+            string firstNameOne = "FirstNameOne";
+            string lastNameOne = "LastNameOne";
             Person personOne = People.CreateAndAddNewPersonToArrayThenReturnPerson(firstNameOne, lastNameOne);
             Person personThatShouldNotBeNull = People.FindById(1);
 
@@ -68,6 +68,35 @@ namespace LexiconTodoIT.Tests
         {
             People.Clear();
             Assert.Empty(People.FindAll());
+        }
+
+        [Fact]
+        public void RemoveObjectFromArrayWithId()
+        {
+            People.Clear();
+            PersonSequencer.reset();
+
+            string firstNameOne = "FirstNameOne";
+            string lastNameOne = "LastNameOne";
+            Person personOne = People.CreateAndAddNewPersonToArrayThenReturnPerson(firstNameOne, lastNameOne);
+
+            string firstNameTwo = "FirstNameTwo";
+            string lastNameTwo = "LastNameTwo";
+            Person personTwo = People.CreateAndAddNewPersonToArrayThenReturnPerson(firstNameTwo, lastNameTwo);
+
+            string firstNameThree = "FirstNameThree";
+            string lastNameThree = "LastNameThree";
+            Person personThree = People.CreateAndAddNewPersonToArrayThenReturnPerson(firstNameThree, lastNameThree);
+
+
+            People.RemovePerson(personTwo.PersonId);
+
+            Person[] removePersonIdTwoArray = People.FindAll();
+
+            Assert.Equal(2, removePersonIdTwoArray.Length);
+            Assert.Equal(personOne.PersonId, removePersonIdTwoArray[0].PersonId);
+            Assert.Equal(personThree.PersonId, removePersonIdTwoArray[1].PersonId);
+
         }
     }
 }

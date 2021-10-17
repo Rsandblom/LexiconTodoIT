@@ -216,5 +216,30 @@ namespace LexiconTodoIT.Tests
             Assert.Equal(todoFour.TodoId, matchingTwoUnAssignedArray[1].TodoId);
 
         }
+
+        [Fact]
+        public void RemoveObjectFromArrayWithId()
+        {
+            TodoItems.Clear();
+            TodoSequencer.reset();
+
+            string descriptionOne = "TheDescriptionOne";
+            Todo todoOne = TodoItems.CreateAndAddNewTodoToArrayThenReturnTodo(descriptionOne);
+
+            string descriptionTwo = "TheDescriptionTwo";
+            Todo todoTwo = TodoItems.CreateAndAddNewTodoToArrayThenReturnTodo(descriptionTwo);
+
+            string descriptionThree = "TheDescriptionThree";
+            Todo todoThree = TodoItems.CreateAndAddNewTodoToArrayThenReturnTodo(descriptionThree);
+
+            TodoItems.RemoveTodoItem(todoTwo.TodoId);
+
+            Todo[] removeTodoIdTwoArray = TodoItems.FindAll();
+
+            Assert.Equal(2, removeTodoIdTwoArray.Length);
+            Assert.Equal(todoOne.TodoId, removeTodoIdTwoArray[0].TodoId);
+            Assert.Equal(todoThree.TodoId, removeTodoIdTwoArray[1].TodoId);
+
+        }
     }
 }
